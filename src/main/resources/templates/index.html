@@ -5,8 +5,9 @@
     <title>Title</title>
     <link th:if="${mode == 'development'}" rel="stylesheet" th:href="@{/css/bootstrap.css}">
     <link th:if="${mode == 'production'}" rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-    <link rel="stylesheet" th:href="@{/js/angular.min.js}"></head>
-    <link rel="stylesheet" th:href="@{/app/app.module.js}"></head>
+    <script type="text/javascript" th:src="@{js/angular.min.js}"></script>
+    <script type="text/javascript" th:src="@{/app/app.module.js}"></script>
+    <script type="text/javascript" th:src="@{/app/booking.controller.js}"></script>
 <body ng-app="app" ng-controller="BookingsController as vm">
     <header>
         <nav class="navbar navbar-default">
@@ -19,19 +20,32 @@
         </nav>
     </header>
     <div>
-        <div class="row">
-            <div class="col-lg-offset-2 col-lg-8">
-                <table class="table">
-                    <thead>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-offset-2 col-lg-8">
+                    <table class="table">
+                        <thead>
                         <tr>
                             <th>Hotel</th>
                             <th>Nights</th>
                             <th>Price</th>
                             <th>Total Price</th>
-                            <th></th>
+                            <th style="width: 90px"></th>
                         </tr>
-                    </thead>
-                </table>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="booking in vm.bookings">
+                            <td>{{booking.hotelName}}</td>
+                            <td>{{booking.nbOfNights}}</td>
+                            <td>{{booking.pricePerNight}}</td>
+                            <td>{{booking.totalPrice}}</td>
+                            <td>
+                                <button class="btn btn-danger" ng-click="vm.deleteBooking(booking.id)">Delete</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

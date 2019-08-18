@@ -1,4 +1,4 @@
-/*C22*/SET SCHEMA PUBLIC
+/*C12*/SET SCHEMA PUBLIC
 drop table hotel_booking if exists
 drop sequence hibernate_sequence if exists
 create sequence hibernate_sequence start with 1 increment by 1
